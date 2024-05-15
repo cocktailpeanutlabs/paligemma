@@ -17,9 +17,9 @@ module.exports = {
         path: "app",                // Edit this to customize the path to start the shell from
         message: [
 //          "pip install gradio devicetorch",
-          "pip install -r requirements-cpu.txt",
+          "{{gpu === 'nvidia' ? 'pip install jax[cuda12]' : 'pip install jax[cpu]'}}",
           "pip install tensorflow_io_gcs_filesystem",
-          "{{gpu === 'nvidia' ? 'pip install jax[cuda12]' : 'pip install jax[cpu]'}}"
+          "pip install -r requirements-cpu.txt",
 //          "pip install jax-metal tensorflow-metal ml-dtypes"
         ]
       }
