@@ -11,7 +11,6 @@ module.exports = {
         },                   // Edit this to customize environment variables (see documentation)
         path: "app",                // Edit this to customize the path to start the shell from
         message: [
-          "python -c 'import jax; print(jax.numpy.arange(10))'",
           "python app.py",    // Edit with your custom commands
         ],
         on: [{
