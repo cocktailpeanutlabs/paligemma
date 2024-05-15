@@ -18,6 +18,7 @@ module.exports = {
         message: [
 //          "pip install gradio devicetorch",
           "pip install -r requirements-cpu.txt",
+          "pip install tensorflow_io_gcs_filesystem",
           "{{gpu === 'nvidia' ? 'pip install jax[cuda12]' : null}}"
 //          "pip install jax-metal tensorflow-metal ml-dtypes"
         ]
