@@ -5,20 +5,8 @@ module.exports = {
       method: "shell.run",
       params: {
         message: [
-          "git clone https://huggingface.co/spaces/google/paligemma app",
+          "git clone https://huggingface.co/spaces/cocktailpeanut/paligemma app",
         ]
-      }
-    },
-    // Delete this step if your project does not use torch
-    {
-      method: "script.start",
-      params: {
-        uri: "torch.js",
-        params: {
-          venv: "env",                // Edit this to customize the venv folder path
-          path: "app",                // Edit this to customize the path to start the shell from
-          // xformers: true   // uncomment this line if your project requires xformers
-        }
       }
     },
     // Edit this step with your custom install commands
@@ -28,18 +16,19 @@ module.exports = {
         venv: "env",                // Edit this to customize the venv folder path
         path: "app",                // Edit this to customize the path to start the shell from
         message: [
-          "pip install gradio devicetorch",
-          "pip install -r requirements.txt"
+//          "pip install gradio devicetorch",
+          "pip install -qr requirements-cpu.txt",
+          "{{gpu === 'nvidia' ? 'pip install jax[cuda12]' : null}}"
+//          "pip install jax-metal tensorflow-metal ml-dtypes"
         ]
       }
     },
-    //  Uncomment this step to add automatic venv deduplication (Experimental)
-    //  {
-    //    method: "fs.link",
-    //    params: {
-    //      venv: "app/env"
-    //    }
-    //  },
+    {
+      method: "fs.link",
+      params: {
+        venv: "app/env"
+      }
+    },
     {
       method: "notify",
       params: {

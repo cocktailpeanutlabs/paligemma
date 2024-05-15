@@ -2,7 +2,7 @@ const path = require('path')
 module.exports = {
   version: "1.5",
   title: "paligemma",
-  description: "",
+  description: "an open vision-language model by Google. PaliGemma is designed as a versatile model for transfer to a wide range of vision-language tasks such as image and short video caption, visual question answering, text reading, object detection and object segmentation https://huggingface.co/spaces/google/paligemma",
   icon: "icon.webp",
   menu: async (kernel) => {
     let installing = await kernel.running(__dirname, "install.js")

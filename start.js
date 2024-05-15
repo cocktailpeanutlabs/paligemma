@@ -5,9 +5,13 @@ module.exports = {
       method: "shell.run",
       params: {
         venv: "env",                // Edit this to customize the venv folder path
-        env: { },                   // Edit this to customize environment variables (see documentation)
+        env: {
+          NO_GCE_CHECK: "true",
+//          RAM_CACHE_GB: 30
+        },                   // Edit this to customize environment variables (see documentation)
         path: "app",                // Edit this to customize the path to start the shell from
         message: [
+          "python -c 'import jax; print(jax.numpy.arange(10))'",
           "python app.py",    // Edit with your custom commands
         ],
         on: [{
@@ -31,13 +35,12 @@ module.exports = {
         url: "{{input.event[0]}}"
       }
     },
-//    Uncomment this step to enable local wifi sharing (access the app from devices on the same network)
-//    {
-//      method: "proxy.start",
-//      params: {
-//        uri: "{{local.url}}",
-//        name: "Local Sharing"
-//      }
-//    }
+    {
+      method: "proxy.start",
+      params: {
+        uri: "{{local.url}}",
+        name: "Local Sharing"
+      }
+    }
   ]
 }
